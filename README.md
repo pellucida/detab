@@ -14,7 +14,7 @@ Set tab stops at positions **stop1 stop2 stop3** columns and at every **repeat**
 
 `detab -T 7 -t 3,6,10`
 
-Set tab stops at columns **3, 6** and **10 **then **14, 21, 28** et seq.
+Set tab stops at columns **3, 6** and **10** then **14, 21, 28** et seq.
 
 Input
 
