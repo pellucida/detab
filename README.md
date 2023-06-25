@@ -30,5 +30,8 @@ Output
 a  b  c   d   e      f      g
 ```
 
+#### Bugs
+Doesn't make any allowance for back space characters.
+
 #### License
 [Creative Commons CC0](http://creativecommons.org/publicdomain/zero/1.0/legalcode)
