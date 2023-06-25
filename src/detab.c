@@ -120,7 +120,7 @@ result_t	tabs_parse (vec_t* shifts, char* tabstr) {
 			size_t	i	= previous;
 			for (i=previous; i < pos && result==ok; ++i) {
 				pos_t	delta	= (pos - i);
-				if (delta < 256) {
+				if (delta <= UINT8_MAX) {
 					result	= vec_put (shifts, i, (delta_t)delta);
 				}
 				else	{
