@@ -20,7 +20,7 @@ Input
 
 ```
 12345678901234567890123456789
-a\tb\tc\td\te\tf\t\g
+a\tb\tc\td\te\tf\tg
 ```
 
 Output
