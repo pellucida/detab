@@ -18,7 +18,7 @@ Set tab stops at columns **3, 6** and **10** then **14, 21, 28** et seq.
 
 Input
 
-```C
+```
 12345678901234567890123456789
 a\tb\tc\td\te\tf\t\g
 ```
@@ -30,3 +30,5 @@ Output
 a  b  c   d   e      f      g
 ```
 
+#### License
+[Creative Commons CC0](http://creativecommons.org/publicdomain/zero/1.0/legalcode)
