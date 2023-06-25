@@ -1,5 +1,5 @@
 
-CFLAGS	+= -Wall -g -I.
+CFLAGS	+= -Wall -g -I. -Delt_t="uint8_t"
 
 OBJ	= detab.o vec.o
 PROG	= detab

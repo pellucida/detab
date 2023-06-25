@@ -9,6 +9,7 @@
 # include	<string.h>
 # include	<stdlib.h>
 # include	<stdarg.h>
+# include	<stdint.h>
 # include	<errno.h>
 
 # include	"errors.h"
@@ -41,6 +42,8 @@ static	void	fatal_error (char* msg, int errn) {
 enum	{
 	TAB_REPEAT	= 8,
 };
+typedef	uint16_t 	pos_t;
+typedef	elt_t	delta_t;
 typedef	struct	tabset_t	tabset_t;
 struct	tabset_t	{
 	vec_t*	shifts;
@@ -83,7 +86,10 @@ pos_t	tabset_next (tabset_t* ts, pos_t pos) {
 	pos_t	result	= 0;
 	pos_t	maxshift	= (ts->shifts)?vec_used (ts->shifts):0;
 	if (pos < maxshift) {
-		 vec_get (ts->shifts, pos, &result);
+		delta_t	delta	= 0;
+		vec_get (ts->shifts, pos, &delta);
+		result	= pos + delta;
+		
 	}
 	else	{
 		result	= ((pos/ts->repeat)+1)*ts->repeat;
@@ -113,7 +119,14 @@ result_t	tabs_parse (vec_t* shifts, char* tabstr) {
 		else {
 			size_t	i	= previous;
 			for (i=previous; i < pos && result==ok; ++i) {
-				result	= vec_put (shifts, i, pos);
+				pos_t	delta	= (pos - i);
+				if (delta < 256) {
+					result	= vec_put (shifts, i, (delta_t)delta);
+				}
+				else	{
+					result	= -E_NUMBER_TOO_BIG;
+					tabs	= 0;
+				}
 			}
 			if (result != ok || *next == '\0') {
 				tabs	= 0;

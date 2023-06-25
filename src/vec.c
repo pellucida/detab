@@ -13,7 +13,7 @@
 struct	vec_t	{
 	size_t	size;
 	size_t	used;
-	pos_t*	vec;
+	elt_t*	vec;
 };
 
 size_t	vec_used (vec_t* ts) {
@@ -72,7 +72,7 @@ result_t	vec_Delete (vec_t** tsp) {
 	}
 	return	ok;
 }
-result_t	vec_append (vec_t* ts, pos_t pos) {
+result_t	vec_append (vec_t* ts, elt_t pos) {
 	result_t	result	= ok;
 	if (ts->used < ts->size) {
 		ts->vec [ts->used++]	= pos;
@@ -85,7 +85,7 @@ result_t	vec_append (vec_t* ts, pos_t pos) {
 	}
 	return	result;
 }
-result_t	vec_get (vec_t* ts, size_t i, pos_t* x) {
+result_t	vec_get (vec_t* ts, size_t i, elt_t* x) {
 	result_t	result	= -E_OUTSIDE;
 	if (i < ts->used) {
 		*x	= ts->vec [i];
@@ -93,22 +93,15 @@ result_t	vec_get (vec_t* ts, size_t i, pos_t* x) {
 	}
 	return	result;
 }
-result_t	vec_replace (vec_t* ts, size_t i, pos_t x) {
-	result_t	result	= ok;
+result_t	vec_replace (vec_t* ts, size_t i, elt_t x) {
+	result_t	result	= -E_OUTSIDE;
 	if (i < ts->used) {
 		ts->vec [i]	= x;
-	}
-	else 	{
-		if (i >= ts->size)	{
-			result	= vec_grow (ts, i+1);
-		}
-		if (result==ok) {
-			result	= vec_put (ts, i, x);
-		}
+		result	= ok;
 	}
 	return	result;
 }
-result_t	vec_put (vec_t* ts, size_t i, pos_t x) {
+result_t	vec_put (vec_t* ts, size_t i, elt_t x) {
 	result_t	result	= ok;
 	size_t	used	= ts->used;
 	if (i >= used) {
@@ -129,7 +122,7 @@ result_t	vec_put (vec_t* ts, size_t i, pos_t x) {
 	return	result;
 }
 result_t	vec_clear (vec_t* ts, size_t i) {
-	result_t	result	= ok;
+	result_t	result	= -E_OUTSIDE;
 	if (i < ts->used) {
 		ts->vec [i]	= 0;
 	}
@@ -150,25 +143,18 @@ result_t	vec_remove (vec_t* ts, size_t i){
 	}
 	return	result;
 }
-result_t	vec_insert (vec_t* ts, size_t i, pos_t x) {
-	result_t	result	= ok;
+result_t	vec_insert (vec_t* ts, size_t i, elt_t x) {
+	result_t	result	= -E_OUTSIDE;;
 	size_t	used	= ts->used;
-	if (used == ts->size) {
-		result	= vec_grow (ts, 2*ts->size);
-	}
-	if (result==ok){
-		if (i >= used) {
-			result	= vec_put (ts, i, x);
+	if (i < used) {
+		typeof(ts->vec)	vec	= ts->vec;
+		size_t	j	= used;
+		for (; j > i; --j) {
+			vec [j]	= vec [j-1];
 		}
-		else	{
-			typeof(ts->vec)	vec	= ts->vec;
-			size_t	j	= used;
-			for (; j > i; --j) {
-				vec [j]	= vec [j-1];
-			}
-			vec [i]	= x;
-			ts->used++;
-		}
+		vec [i]	= x;
+		ts->used++;
+		result	= ok;
 	}
 	return	result;
 }

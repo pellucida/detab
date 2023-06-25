@@ -17,6 +17,7 @@ enum	{
 	n_NOT_POSITIVE		= 2,
 	n_OUTSIDE		= 3, 
 	n_AGAIN			= 4, 
+	n_NUMBER_TOO_BIG	= 5,
 };
 enum	{
 	err	= -1,
@@ -26,6 +27,7 @@ enum	{
 	E_Code( NOT_POSITIVE, DETAB_MASK),
 	E_Code( OUTSIDE, DETAB_MASK),
 	E_Code( AGAIN, DETAB_MASK),
+	E_Code( NUMBER_TOO_BIG, DETAB_MASK),
 };
 
 static	char* 	detab_error_messages []	= {
@@ -33,6 +35,7 @@ static	char* 	detab_error_messages []	= {
 	[n_NOT_MONO_ASCENDING]	= "Tab position must be strictly ascending",
 	[n_NOT_POSITIVE]	= "Positive number expected",
 	[n_OUTSIDE]		= "Access outside range",
+	[n_NUMBER_TOO_BIG]	= "Tab stop too far from previous stop", 
 	[n_AGAIN]		= "Cannot put() into existing location. User replace()",
 };
 
