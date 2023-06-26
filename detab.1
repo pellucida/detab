@@ -3,7 +3,7 @@
 detab \- convert tab chars to spaces and print on the standard output
 .SH SYNOPSIS
 .B detab
-[\fI-T repeat\fR] [\fI-t t1,t2,t3\fR] [\fIfile\fR]
+[\fI-T repeat\fR] [\fI-t t1,t2,t3,...\fR] [\fIfile\fR]
 .SH DESCRIPTION
 .PP
 Read \fIfile\fR, or stdin, convert tabs to spaces and output to stdout.
@@ -11,7 +11,7 @@ Read \fIfile\fR, or stdin, convert tabs to spaces and output to stdout.
 \fB\-T\fR \fIrepeat\fR
 set tab stops at every \fIrepeat\fR column
 .TP
-\fB\-t\fR \fIt1,t2,...\fR
+\fB\-t\fR \fIt1,t2,t3,...\fR
 set tab stops at columns \fIt1\fR, \fIt2\fR, \fIt3\fR etc and then every \fIrepeat\fR column
 .PP
 With no \fIfile\fR, read stdin.

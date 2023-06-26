@@ -15,7 +15,7 @@
 
 static	inline	result_t	_New (void* p, size_t size) {
 	result_t	result	= -ENOMEM;
-	void*	m	= calloc (1, size);
+	void*	m	= malloc (size);
 	if (m) {
 		*(void**)(p)	= m;
 		result	= ok;

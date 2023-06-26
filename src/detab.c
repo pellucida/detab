@@ -67,7 +67,7 @@ result_t	tabset_Create (tabset_t** tsp, vec_t* shifts, pos_t repeat) {
 // convert 'str' to into positive number [0..n]]
 //
 result_t	get_number (pos_t* tp, char* str, char** nextp) {
-	result_t	result	= -E_NOT_POSITIVE;
+	result_t	result	= -E__(NOT_POSITIVE);
 	char*	tend	= 0;
 	pos_t	t	= strtoul (str, &tend, 10);
 	if (str < tend){
@@ -113,7 +113,7 @@ result_t	tabs_parse (vec_t* shifts, char* tabstr) {
 			tabs	= 0;
 		}
 		else if (previous >= pos) {
-			result	= -E_NOT_MONO_ASCENDING;
+			result	= -E__(NOT_ASCENDING);
 			tabs	= 0;
 		}
 		else {
@@ -124,7 +124,7 @@ result_t	tabs_parse (vec_t* shifts, char* tabstr) {
 					result	= vec_put (shifts, i, (delta_t)delta);
 				}
 				else	{
-					result	= -E_NUMBER_TOO_BIG;
+					result	= -E__(NUMBER_TOO_BIG);
 					tabs	= 0;
 				}
 			}
@@ -137,7 +137,7 @@ result_t	tabs_parse (vec_t* shifts, char* tabstr) {
 			}
 			else {
 				tabs	= 0;
-				result	= -E_NOT_POSITIVE;
+				result	= -E__(NOT_POSITIVE);
 			}
 		}
 	}
