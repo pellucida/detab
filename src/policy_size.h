@@ -6,6 +6,11 @@
 
 # include	<stdlib.h>
 
+// Actually just ensures at least SIZE_MIN allocation
+// OR round up to SIZE_STEP boundary
+// Probably thinking
+//  [((size-SIZE_MIN)+(SIZE_STEP-1))/SIZE_STEP]*SIZE_STEP + SIZE_MIN
+
 enum	{
 	VEC_SIZE_MIN	= 64,
 	VEC_SIZE_STEP	= 64,
