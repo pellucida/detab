@@ -73,19 +73,6 @@ result_t	vec_Delete (vec_t** tsp) {
 	}
 	return	ok;
 }
-result_t	vec_append (vec_t* ts, elt_t pos) {
-	result_t	result	= ok;
-	if (ts->used < ts->size) {
-		ts->vec [ts->used++]	= pos;
-	}
-	else	{
-		result	= vec_grow (ts, 2*ts->size);
-		if (result==ok) {
-			result	= vec_append (ts, pos);
-		}
-	}
-	return	result;
-}
 result_t	vec_get (vec_t* ts, size_t i, elt_t* x) {
 	result_t	result	= -E__(NOT_INITIALIZED);
 	if (i < ts->used) {
@@ -121,6 +108,9 @@ result_t	vec_put (vec_t* ts, size_t i, elt_t x) {
 	}
 	else	result	= -E__(WOULD_OVERWRITE);
 	return	result;
+}
+result_t	vec_append (vec_t* ts, elt_t pos) {
+	return	vec_put (ts, ts->used, pos);
 }
 result_t	vec_clear (vec_t* ts, size_t i) {
 	result_t	result	= -E__(NOT_INITIALIZED);
