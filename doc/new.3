@@ -1,0 +1,34 @@
+.TH new "3" "June 2023" "Memory allocation macros" "Programming Tools"
+.SH NAME
+"new.h" \- memory allocation macros
+.SH SYNOPSIS
+.nf
+.B #include """errors.h""
+.B #include """new.h""
+.sp
+.B New (&object)
+.B New_Vec (&vector, n_elements)
+.B Resize_Vec (&vector, n_elements)
+.SH DESCRIPTION
+.PP
+.B New (&obj)
+\- allocate sizeof (*obj) bytes to obj
+.sp
+.B New_Vec (&vec, n)
+\- allocate space for n x typeof(vec*) objects to vec
+.sp
+.B Resize_Vec (&vec, n)
+\- expand vec object to n items
+.SH RETURN VALUE
+All macros return a \fBresult_t\fR value currently either \fIok\fR or \fI-ENOMEM\fR.
+.SH EXAMPLES
+.nf
+# include  "errors.h"
+# include  "new.h"
+
+pair_t*   link     = 0;
+result_t  result   = New (&link);
+pair_t**  pairvec  = 0;
+result_t  result   = New_Vec (&pairvec, 1024);
+result_t  result   = Resize_Vec (&pairvec, 1536);
+.SH BUGS

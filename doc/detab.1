@@ -1,0 +1,36 @@
+.TH detab "1" "June 2023" "Text Utility" "User Commands"
+.SH NAME
+detab \- convert tab chars to spaces and print on the standard output
+.SH SYNOPSIS
+.B detab
+[\fI-T repeat\fR] [\fI-t t1,t2,t3\fR] [\fIfile\fR]
+.SH DESCRIPTION
+.PP
+Read \fIfile\fR, or stdin, convert tabs to spaces and output to stdout.
+.TP
+\fB\-T\fR \fIrepeat\fR
+set tab stops at every \fIrepeat\fR column [default: 8]
+.TP
+\fB\-t\fR \fIt1,t2,...\fR
+set tab stops at columns \fIt1\fR, \fIt2\fR, \fIt3\fR etc and then every \fIrepeat\fR column
+.PP
+When \fIfile\fR is omitted, read stdin.
+.SH EXAMPLES
+.TP
+\fBdetab\fR \fI#\fR The default is to use tab stop every 8 columns
+.TP
+\fBdetab\fR \fI\-T 8\fR \fI#\fR ditto
+.TP
+\fBdetab\fR \fI\-T 7\fR \fI-t 3,6,10\fR
+.TP
+\fBInput\fR
+12345678901234567890123456789
+.br
+a\\tb\\tc\\td\\te\\tf\\tg
+.TP
+\fBOutput\fR
+12345678901234567890123456789
+.br
+a  b  c   d   e      f      g
+.SH BUGS
+Doesn't make any allowance for backspace characters.
