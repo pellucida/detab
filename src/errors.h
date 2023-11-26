@@ -37,7 +37,7 @@ static	char* 	detab_error_messages []	= {
 	[NOT_POSITIVE]	= "Positive number expected",
 	[NOT_INITIALIZED]	= "Access outside range",
 	[NUMBER_TOO_BIG]	= "Tab stop too far from previous stop", 
-	[WOULD_OVERWRITE]	= "Cannot put() into existing location. User replace()",
+	[WOULD_OVERWRITE]	= "Cannot put() into existing location. Use eplace()",
 };
 
 static	inline	char*	error_msg (result_t r) {
