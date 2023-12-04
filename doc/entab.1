@@ -1,0 +1,65 @@
+.TH entab "1" "June 2023" "Text Utility" "User Commands"
+.SH NAME
+entab \- convert space chars to tabs and print on the standard output
+.SH SYNOPSIS
+.B entab
+[\fI-Z|-F\fR] [\fI-E (d|h|i|p|s)\fR] 
+[\fI-T repeat\fR] [\fI-t t1,t2,t3,...\fR] [\fIfile\fR]
+.SH DESCRIPTION
+.PP
+Read \fIfile\fR, or stdin, convert spaces to tabs and output to stdout.
+.TP
+\fB\-Z\fR 
+don't replace single space with tab character.
+.TP
+\fB\-F\fR 
+assume input is fixed width fields on tab stops with zero or more trailing spaces and always insert a tab character absorbing any trailing spaces.
+.TP
+\fB\-E d|h|i|p|s\fR 
+handling embedded tab characters in the input (no good options):
+.nf
+.br
+\fBd\fR - delete 
+.br
+\fBh\fR - honour tab request and move to next tab stop 
+.br
+\fBi\fR - insert sufficient spaces to move to next standard (-T 8) stop
+.br
+\fBp\fR - pass the tab character as a normal non-space character
+.br
+\fBs\fR - substitute the tab character with a single space.
+.fi
+.TP
+\fB\-T\fR \fIrepeat\fR
+set tab stops at every \fIrepeat\fR column
+.TP
+\fB\-t\fR \fIt1,t2,t3,...\fR
+set tab stops at columns \fIt1\fR, \fIt2\fR, \fIt3\fR etc and then every \fIrepeat\fR column
+.PP
+With no \fIfile\fR, read stdin.
+.SH EXAMPLES
+.TP
+\fBentab\fR \fI#\fR The default is to use tab stop every 8 columns
+.TP
+\fBentab\fR \fI\-T 8\fR \fI#\fR ditto
+.TP
+\fBentab\fR \fI\-T 7\fR \fI-t 3,6,10\fR
+.TP
+\fBInput\fR
+12345678901234567890123456789
+.br
+a  b  c   d   e      f      g
+.br
+.TP
+\fBOutput\fR
+a\\tb\\tc\\td\\te\\tf\\tg
+.TP
+\fBentab\fR \fI\-F\fR \fI-t 1,7,72\fR
+.TP
+\fBInput\fR
+12345678901234567890123456789
+.TP
+\fBOutput\fR
+1\\t234567\\t8901234567890123456789
+.SH BUGS
+Doesn't make any allowance for backspace characters.

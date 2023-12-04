@@ -19,6 +19,7 @@ enum	{
 	NOT_INITIALIZED	= 3, 
 	WOULD_OVERWRITE	= 4, 
 	NUMBER_TOO_BIG	= 5,
+	UNSUPP_TAB_REQ	= 6,
 };
 enum	{
 	err	= -1,
@@ -29,6 +30,7 @@ enum	{
 	E_Code( NOT_INITIALIZED, DETAB_MASK),
 	E_Code( WOULD_OVERWRITE, DETAB_MASK),
 	E_Code( NUMBER_TOO_BIG, DETAB_MASK),
+	E_Code( UNSUPP_TAB_REQ, DETAB_MASK),
 };
 
 static	char* 	detab_error_messages []	= {
@@ -37,7 +39,8 @@ static	char* 	detab_error_messages []	= {
 	[NOT_POSITIVE]	= "Positive number expected",
 	[NOT_INITIALIZED]	= "Access outside range",
 	[NUMBER_TOO_BIG]	= "Tab stop too far from previous stop", 
-	[WOULD_OVERWRITE]	= "Cannot put() into existing location. Use eplace()",
+	[WOULD_OVERWRITE]	= "Cannot put() into existing location. User replace()",
+	[UNSUPP_TAB_REQ]	= "Unsupported tab processing requested",
 };
 
 static	inline	char*	error_msg (result_t r) {

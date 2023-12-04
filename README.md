@@ -1,16 +1,22 @@
-# Expand tabs into spaces
+# Expand tabs into spaces or spaces into tabs
 
-Simple program to expand tabs set at specified positions into spaces.
+Two simple programs to expand tabs set at specified positions into spaces and
+the reverse.
 
-I had a recent need to do this but couldn't find an obvious program but I vaguely remembered converting a small program from *Software Tools in Pascal*  (Kernighan and  Plauger, 1981) to Small C on a CP/M 3 computer.  Couldn't be that hard.
+I had a recent need to do this but couldn't find an obvious program but I vaguely remembered converting a small program from *Software Tools in Pascal*  (Kernighan and  Plauger, 1981.) 
 
 #### Synopsis
 
 **detab**  *[-T repeat]*  *[-t stop1,stop2,stop3,...]*  *[filename]*
 
 Set tab stops at positions **stop1 stop2 stop3** columns and at every **repeat** column thereafter.
+.
+**entab**  *[-Z|-F]*  *[-E  (d|h|i|s|p)]*  *[-T repeat]*  *[-t stop1,stop2,stop3,...]*  *[filename]*
 
-#### Example
+Insert tabs either to compress spaces (*-Z)* or to insert tabs as field separators (*-F*) at the specified tab stops while absorbing any trailing spaces.
+The handling of embedded tab (*-E*) characters in the input is where the complexity arises. The options considered are delete (**d**), honour (**h**), insert (**i**) sufficient spaces to move to next standard (*-T* **8**) tab stop, replace with a single space (**s)** or preserve (**p**) passing the tab character as an ordinary character.
+
+#### Examples
 
 `detab -T 7 -t 3,6,10`
 
@@ -32,6 +38,7 @@ a  b  c   d   e      f      g
 
 #### Bugs
 Doesn't make any allowance for back space characters.
+The handling of embedded tabs by **entab** is a hack at best.
 
 #### License
 [Creative Commons CC0](http://creativecommons.org/publicdomain/zero/1.0/legalcode)
