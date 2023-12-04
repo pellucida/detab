@@ -10,7 +10,7 @@ I had a recent need to do this but couldn't find an obvious program but I vaguel
 **detab**  *[-T repeat]*  *[-t stop1,stop2,stop3,...]*  *[filename]*
 
 Set tab stops at positions **stop1 stop2 stop3** columns and at every **repeat** column thereafter.
-.
+
 **entab**  *[-Z|-F]*  *[-E  (d|h|i|s|p)]*  *[-T repeat]*  *[-t stop1,stop2,stop3,...]*  *[filename]*
 
 Insert tabs either to compress spaces (*-Z)* or to insert tabs as field separators (*-F*) at the specified tab stops while absorbing any trailing spaces.
