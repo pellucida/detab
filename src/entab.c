@@ -147,21 +147,15 @@ int	main (int argc, char* argv[]) {
 			}
 		}
 		else {
+			if (sp > 0) {
+				spaces (output, sp);
+				sp	= 0;
+			}
+			fputc (ch, output);
 			if (ch == '\n') {
-				if (sp > 0) {
-					spaces (output, sp);
-				}
-				fputc (ch, output);
 				pos	= 0;
 				tabstop	= tabset_next (tabset, pos);
 			}
-			else	{ // ch not space, tab or newline
-				if (sp > 0) {
-					spaces (output, sp);
-				}
-				fputc (ch, output);
-			}
-			sp	= 0;	// non space char always breaks run
 		}
 		if (pos == tabstop) {
 			if (F_flag || sp > 0) {
