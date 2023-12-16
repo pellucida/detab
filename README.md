@@ -1,3 +1,8 @@
+# Note
+For updated version see https://github.com/pellucida/tabutils
+done slightly differently.
+
+-------------
 # Expand tabs into spaces or spaces into tabs
 
 Two simple programs to expand tabs set at specified positions into spaces and
